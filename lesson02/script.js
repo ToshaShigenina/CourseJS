@@ -1,6 +1,6 @@
-let money, income, addExpenses, deposit, mission, period;
-
-alert('Первый урок на курсе JavaScript 11.0!');
-// после закрытия алерта происходит ошибка 
-// Unchecked runtime.lastError: The message port closed before a response was received.
-console.log('Первый урок на курсе JavaScript 11.0!');
+let money = 50000,
+  income = 'Спекуляции',
+  addExpenses = 'океанариум, такси, косметика, котики',
+  deposit = true,
+  mission = 1000000,
+  period = 12;
