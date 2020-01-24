@@ -1,9 +1,10 @@
-let money = 50000,
+let money = 60000,
   income = 'Спекуляции',
   addExpenses = 'Океанариум, Косметика, Котики',
   deposit = true,
   mission = 1000000,
-  period = 12;
+  period = 12,
+  budgetDay = money / 30;
 
 
 console.log(typeof money);
@@ -17,3 +18,5 @@ console.log('Цель - заработать ' + mission + ' рублей!');
 
 console.log(addExpenses.toLowerCase());
 console.log(addExpenses.split(', '));
+
+console.log(budgetDay);
