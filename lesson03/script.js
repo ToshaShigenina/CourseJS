@@ -36,10 +36,10 @@ budgetMonth = money - amount[0] - amount[1];
 
 console.log('Бюджет на месяц ' + budgetMonth);
 
-console.log('Цель будет достигнута за: ' + Math.ceil(missin / budgetMonth) + ' месяцев');
+console.log('Цель будет достигнута за: ' + Math.ceil(mission / budgetMonth) + ' месяцев');
 
 budgetDay = Math.floor(budgetMonth / 30);
-console.log('Бюджет на день:', budgetDay);
+console.log('Бюджет на день: ' + budgetDay);
 
 if (budgetDay < 0) {
   console.log('Что то пошло не так');
