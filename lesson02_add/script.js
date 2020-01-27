@@ -2,7 +2,7 @@ let num = 266219;
 
 num = num.toString().split('').reduce((comp, item) => {
   return comp * item;
-})
+});
 
 console.log(num);
 
