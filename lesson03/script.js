@@ -34,9 +34,9 @@ for (let i = 0; i < 2; i++) {
 
 budgetMonth = Number(money) - amount[0] - amount[1];
 
-console.log(budgetMonth);
+console.log('Бюджет на месяц ' + budgetMonth);
 
-console.log(Math.ceil(missin / budgetMonth));
+console.log('Цель будет достигнута за: ' + Math.ceil(missin / budgetMonth) + ' месяцев');
 
 budgetDay = Math.floor(budgetMonth / 30);
 console.log('Бюджет на день:', budgetDay);
