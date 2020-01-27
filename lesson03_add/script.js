@@ -1,19 +1,38 @@
 /* пункт 1 */
-let lang = 'ru',
-  monRu = 'Понедельник',
-  tueRu = 'Вторник',
-  wedRu = 'Среда',
-  thuRu = 'Четверг',
-  friRu = 'Пятница',
-  satRu = 'Суббота',
-  sunRu = 'Воскресенье',
-  monEn = 'Monday',
-  tueEn = 'Tuesday',
-  wedEn = 'Wednesday',
-  thuEn = 'Thursday',
-  friEn = 'Friday',
-  satEn = 'Saturday',
-  sunEn = 'Sunday';
+let lang = prompt('Введите язык:', 'ru'),
+  weekRu = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
+  weekEn = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+/* if */
+if (lang === 'ru') {
+  console.log(weekRu.reduce((week, day) => {
+    return week + ', ' + day;
+  }));
+} else if (lang === 'en') {
+  console.log(weekEn.reduce((week, day) => {
+    return week + ', ' + day;
+  }));
+} else console.log('Что-то пошло не так!');
+
+/* switch */
+
+switch (lang) {
+  case 'ru':
+    console.log(weekRu.reduce((week, day) => {
+      return week + ', ' + day;
+    }));
+    break;
+  case 'en':
+    console.log(weekEn.reduce((week, day) => {
+      return week + ', ' + day;
+    }));
+    break;
+  default:
+    console.log('Что-то пошло не так!');
+    break;
+}
+
+/* массив */
 
 
 
