@@ -1,16 +1,24 @@
-let num = 266219;
+/* пункт 1 */
+let lang = 'ru',
+  monRu = 'Понедельник',
+  tueRu = 'Вторник',
+  wedRu = 'Среда',
+  thuRu = 'Четверг',
+  friRu = 'Пятница',
+  satRu = 'Суббота',
+  sunRu = 'Воскресенье',
+  monEn = 'Monday',
+  tueEn = 'Tuesday',
+  wedEn = 'Wednesday',
+  thuEn = 'Thursday',
+  friEn = 'Friday',
+  satEn = 'Saturday',
+  sunEn = 'Sunday';
 
-num = num.toString().split('').reduce((comp, item) => {
-  return comp * item;
-});
 
-console.log(num);
 
-num = num ** 3;
+/* пункт 2 */
 
-console.log(num);
+let namePerson = prompt('Введите имя: ', 'Артем');
 
-console.log(num.toString()[0], num.toString()[1]); // в формате строк
-console.log(+num.toString()[0], +num.toString()[1]); // в формате чисел
-
-console.log(num.toString().slice(0, 2));
+console.log(namePerson === 'Артем' ? 'директор' : (namePerson === 'Максим' ? 'преподаватель' : 'студент'));
