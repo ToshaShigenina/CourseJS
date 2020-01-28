@@ -4,7 +4,8 @@ let lang = prompt('Введите язык:', 'ru'),
   weekEn = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 /* if */
-if (lang === 'ru') {
+
+/*if (lang === 'ru') {
   console.log(weekRu.reduce((week, day) => {
     return week + ', ' + day;
   }));
@@ -12,11 +13,17 @@ if (lang === 'ru') {
   console.log(weekEn.reduce((week, day) => {
     return week + ', ' + day;
   }));
+} else console.log('Что-то пошло не так!');*/
+
+if (lang === 'ru') {
+  console.log(weekRu.join(', '));
+} else if (lang === 'en') {
+  console.log(weekEn.join(', '));
 } else console.log('Что-то пошло не так!');
 
 /* switch */
 
-switch (lang) {
+/*switch (lang) {
   case 'ru':
     console.log(weekRu.reduce((week, day) => {
       return week + ', ' + day;
@@ -30,11 +37,28 @@ switch (lang) {
   default:
     console.log('Что-то пошло не так!');
     break;
+}*/
+
+switch (lang) {
+  case 'ru':
+    console.log(weekRu.join(', '));
+    break;
+  case 'en':
+    console.log(weekEn.join(', '));
+    break;
+  default:
+    console.log('Что-то пошло не так!');
+    break;
 }
 
 /* массив */
 
+let weeks = [
+  ['ru', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
+  ['en', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+];
 
+console.log(weeks[0].indexOf(lang) !== -1 ? weeks[0].slice(1).join(', ') : weeks[1].slice(1).join(', '));
 
 /* пункт 2 */
 
