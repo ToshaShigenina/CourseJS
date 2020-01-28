@@ -60,6 +60,14 @@ let weeks = [
 
 console.log(weeks[0].indexOf(lang) !== -1 ? weeks[0].slice(1).join(', ') : weeks[1].slice(1).join(', '));
 
+/*let weeks = {
+  ru: ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
+  en: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+};
+
+console.log(weeks[lang].join(', '));*/
+
+
 /* пункт 2 */
 
 let namePerson = prompt('Введите имя: ', 'Артем');
