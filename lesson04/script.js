@@ -2,28 +2,22 @@ let money = 60000,
   income = 'Спекуляции',
   addExpenses = 'Океанариум, Косметика, Котики',
   deposit = true,
-  mission = 1000000,
+  mission = 100000,
   period = 12,
   budgetDay = money / 30,
   expenses1 = '',
   expenses2 = '',
   amount1 = '',
-  amount2 = '',
-  budgetMonth = 0;
+  amount2 = '';
 
 
-console.log(typeof money);
-console.log(typeof income);
-console.log(typeof deposit);
+console.log(showTypeOf(money));
+console.log(showTypeOf(income));
+console.log(showTypeOf(deposit));
 
-console.log(addExpenses.length);
-
-console.log('Период равен ' + period + ' месяцев');
-console.log('Цель - заработать ' + mission + ' рублей!');
+console.log('Расходы за месяц: ' + getExpensessMonth());
 
 console.log(addExpenses.toLowerCase().split(', '));
-
-console.log(budgetDay);
 
 money = prompt('Ваш месячный доход?', '30000');
 addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
@@ -35,15 +29,13 @@ amount1 = prompt('Во сколько это обойдется?');
 expenses2 = prompt('Введите обязательную статью расходов?');
 amount2 = prompt('Во сколько это обойдется?');
 
+console.log('Цель будет достигнута за ' + getTargetMonth() + ' месяцев');
 
-budgetMonth = money - amount1 - amount2;
+let accumulatedMonth = getAccumulatedMonth();
+budgetDay = Math.floor(accumulatedMonth / 30);
 
-console.log('Бюджет на месяц ' + budgetMonth);
-
-console.log('Цель будет достигнута за: ' + Math.ceil(mission / budgetMonth) + ' месяцев');
-
-budgetDay = Math.floor(budgetMonth / 30);
 console.log('Бюджет на день: ' + budgetDay);
+
 
 if (budgetDay >= 1200) {
   console.log('У вас высокий уровень дохода');
@@ -55,11 +47,10 @@ if (budgetDay >= 1200) {
   console.log('Что то пошло не так!');
 }
 
-let accumulatedMonth = getAccumulatedMonth();
 
 /* Сумма всех обязательных расходов */
 function getExpensessMonth() {
-  return amoun1 + amount2;
+  return Number(amount1) + Number(amount2);
 }
 
 /* накопления за месяц (доходы - расходы) */
@@ -69,5 +60,11 @@ function getAccumulatedMonth() {
 
 /* период, за который бедет достигнута цель */
 function getTargetMonth() {
-  return Math.ceil(mission / getAccumulatedMonth());
+  return Math.ceil(mission / accumulatedMonth);
 }
+
+function showTypeOf(item) {
+  return typeof item;
+}
+
+//Что за функция getStatusIncome?
