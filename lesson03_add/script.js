@@ -54,18 +54,21 @@ switch (lang) {
 /* массив */
 
 let weeks = [
-  ['ru', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
-  ['en', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+  'ru',
+  ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
+  ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 ];
 
-console.log(weeks[0].indexOf(lang) !== -1 ? weeks[0].slice(1).join(', ') : weeks[1].slice(1).join(', '));
+console.log(weeks[0] === lang ? weeks[1].join(', ') : weeks[2].join(', '));
 
-/*let weeks = {
+/* объект */
+
+let weeks2 = {
   ru: ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
   en: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 };
 
-console.log(weeks[lang].join(', '));*/
+console.log(weeks2[lang].join(', '));
 
 
 /* пункт 2 */
