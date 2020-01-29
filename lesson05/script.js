@@ -1,17 +1,23 @@
 'use strict';
 
-let money = 60000,
+let money,
   income = 'Спекуляции',
   addExpenses = 'Океанариум, Косметика, Котики',
   deposit = true,
   mission = 100000,
   period = 12,
-  budgetDay = money / 30,
+  budgetDay,
   expenses1 = '',
   expenses2 = '',
   amount1 = '',
   amount2 = '',
   accumulatedMonth = 0;
+
+let start = function () {
+  do {
+    money = prompt('Ваш месячный доход?');
+  } while (isNaN(parseFloat(money)));
+}
 
 /* показывает тип переменной */
 let showTypeOf = function (item) {
