@@ -1,9 +1,8 @@
+'use strict';
+
 let newString = prompt('Введите строку:');
 
-trimString(newString);
-
-function trimString(str) {
-
+let trimString = function (str) {
   if (isFinite(str) && parseFloat(str)) {
     alert('В функцию передано число!');
     return;
@@ -17,4 +16,6 @@ function trimString(str) {
 
   alert(str);
   return;
-}
+};
+
+trimString(newString);
