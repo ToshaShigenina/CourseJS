@@ -1,3 +1,5 @@
+'use strict';
+
 let money = 60000,
   income = 'Спекуляции',
   addExpenses = 'Океанариум, Косметика, Котики',
@@ -10,6 +12,40 @@ let money = 60000,
   amount1 = '',
   amount2 = '',
   accumulatedMonth = 0;
+
+/* показывает тип переменной */
+let showTypeOf = function (item) {
+  return typeof item;
+};
+
+/* вывод уровня дохода */
+let getStatusIncome = function (budget) {
+  if (budget >= 1200) {
+    return 'У вас высокий уровень дохода';
+  } else if (budget >= 600 && budget < 1200) {
+    return 'У вас средний уровень дохода';
+  } else if (budget >= 0 && budget < 600) {
+    return 'К сожалению у вас уровень дохода ниже среднего';
+  } else {
+    return 'Что то пошло не так!';
+  }
+};
+
+/* сумма всех обязательных расходов */
+let getExpensessMonth = function (am1, am2) {
+  return Number(am1) + Number(am2);
+};
+
+/* накопления за месяц (доходы - расходы) */
+let getAccumulatedMonth = function (money, exp) {
+  return money - exp;
+};
+
+/* период, за который бедет достигнута цель */
+let getTargetMonth = function (mission, accum) {
+  return Math.ceil(mission / accum);
+};
+
 
 
 console.log(showTypeOf(money));
@@ -38,36 +74,3 @@ console.log('Цель будет достигнута за ' + getTargetMonth(mi
 console.log('Бюджет на день: ' + budgetDay);
 
 console.log(getStatusIncome(budgetDay));
-
-
-
-/* Сумма всех обязательных расходов */
-function getExpensessMonth(am1, am2) {
-  return Number(am1) + Number(am2);
-}
-
-/* накопления за месяц (доходы - расходы) */
-function getAccumulatedMonth(money, exp) {
-  return money - exp;
-}
-
-/* период, за который бедет достигнута цель */
-function getTargetMonth(mission, accum) {
-  return Math.ceil(mission / accum);
-}
-
-function showTypeOf(item) {
-  return typeof item;
-}
-
-function getStatusIncome(budget) {
-  if (budget >= 1200) {
-    return 'У вас высокий уровень дохода';
-  } else if (budget >= 600 && budget < 1200) {
-    return 'У вас средний уровень дохода';
-  } else if (budget >= 0 && budget < 600) {
-    return 'К сожалению у вас уровень дохода ниже среднего';
-  } else {
-    return 'Что то пошло не так!';
-  }
-}
