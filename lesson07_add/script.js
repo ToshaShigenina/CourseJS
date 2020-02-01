@@ -11,12 +11,20 @@ let week = [
 ],
   day = new Date().getDay();
 
+if (day === 0) {
+  day = 7;
+}
+
 week.forEach((item, i) => {
+  let p = document.createElement('p');
+
+  p.innerHTML = item;
+
   if (i === day - 1) {
-    console.log('%c%s', 'font-weight: 700;', item);
+    p.style.fontWeight = '700';
   } else if (i === 5 || i === 6) {
-    console.log('%c%s', 'font-style: italic;', item);
-  } else {
-    console.log(item);
+    p.style.fontStyle = 'italic';
   }
+
+  document.body.append(p);
 });
