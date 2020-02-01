@@ -20,9 +20,13 @@ week.forEach((item, i) => {
 
   p.innerHTML = item;
 
-  if (i === day - 1) {
+  if ((i === 5 || i === 6) && (i === day - 1)) {
+    p.style.fontStyle = 'italic';
     p.style.fontWeight = '700';
-  } else if (i === 5 || i === 6) {
+  } else if (i === day - 1) {
+    p.style.fontWeight = '700';
+  }
+  if (i === 5 || i === 6) {
     p.style.fontStyle = 'italic';
   }
 
