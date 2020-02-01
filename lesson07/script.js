@@ -1,10 +1,9 @@
 'use strict';
 
-let isNumber = function (n) {
-  return !isNaN(parseFloat(n)) && isFinite(n);
-};
-
 let money,
+  isNumber = function (n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+  },
   start = function () {
     do {
       money = prompt('Ваш месячный доход?');
@@ -49,10 +48,12 @@ let appData = {
     for (let key in appData.expenses) {
       sum += appData.expenses[key];
     }
+
     appData.expensesMonth = sum;
   },
-  getAccumulatedMonth: function () {
+  getBudget: function () {
     appData.budgetMonth = appData.budget - appData.expensesMonth;
+    appData.budgetDay = Math.floor(appData.budgetMonth / 30);
   },
   getTargetMonth: function () {
     appData.period = Math.ceil(appData.mission / appData.budgetMonth);
@@ -64,8 +65,6 @@ let appData = {
     }
   },
   getStatusIncome: function () {
-    appData.budgetDay = Math.floor(appData.budgetMonth / 30);
-
     if (appData.budgetDay >= 1200) {
       return 'У вас высокий уровень дохода';
     } else if (appData.budgetDay >= 600 && appData.budgetDay < 1200) {
@@ -80,10 +79,13 @@ let appData = {
 
 appData.asking();
 appData.getExpensessMonth();
-appData.getAccumulatedMonth();
+appData.getBudget();
 
 console.log('Расходы за месяц: ' + appData.expensesMonth);
-
 console.log(appData.getTargetMonth());
 console.log(appData.getStatusIncome());
-console.log('Бюджет на день: ' + appData.budgetDay);
+console.log('Наша программа включает в себя данные:');
+
+for (let key in appData) {
+  console.log(key + ' : ' + appData[key]);
+}
