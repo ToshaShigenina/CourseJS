@@ -15,6 +15,8 @@ title.textContent = 'Книга 3. this и Прототипы Объектов';
 
 contentsCh2[3].after(contentsCh2[6]);
 contentsCh2[6].after(contentsCh2[8]);
+contentsCh2[10].before(contentsCh2[2]);
+
 
 console.log(contentsCh2);
 
