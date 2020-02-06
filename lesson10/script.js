@@ -6,7 +6,8 @@ let container = document.querySelector('.books'),
   advertisment = document.querySelector('.adv'),
   title = books[4].querySelector('a'),
   contentsCh2 = books[0].querySelectorAll('li'),
-  contentsCh5 = books[5].querySelectorAll('li');
+  contentsCh5 = books[5].querySelectorAll('li'),
+  newChapter = document.createElement('li');
 
 books[1].after(books[0]);
 books[4].after(books[3]);
@@ -22,8 +23,8 @@ contentsCh5[1].after(contentsCh5[9]);
 contentsCh5[4].after(contentsCh5[2]);
 contentsCh5[8].before(contentsCh5[5]);
 
-
-console.log(contentsCh5);
+newChapter.textContent = 'Глава 8: За пределами ES6';
+books[2].querySelectorAll('li')[9].before(newChapter);
 
 body.style.backgroundImage = 'url(./image/you-dont-know-js.jpg)';
 advertisment.remove();
