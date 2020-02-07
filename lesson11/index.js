@@ -23,8 +23,15 @@ let calc = document.getElementById('start'),
   incomeItems = document.querySelectorAll('.income-items');
 
 let isNumber = function (n) {
-  return !isNaN(parseFloat(n)) && isFinite(n);
-};
+    return !isNaN(parseFloat(n)) && isFinite(n);
+  },
+  checkNum = function (key) {
+    return (key >= '0' && key <= '9') || key == 'ArrowLeft' || key == 'ArrowRight' || key == 'Delete' || key == 'Backspace';
+  },
+  checkLetter = function (key) {
+    console.log(key == /[^а-яА-ЯёЁ]/);
+    return key == 'ArrowLeft' || key == 'ArrowRight' || key == 'Delete' || key == 'Backspace' || key == 'Shift' || (key >= 'а' && key <= 'я') || (key >= 'А' && key <= 'Я') || key == ' ' || key == '.' || key == ',' || key == '-';
+  };
 
 let appData = {
   budget: 0,
@@ -70,6 +77,10 @@ let appData = {
   },
   addExpensesBlock: function () {
     let cloneExpensesItem = expensesItems[0].cloneNode(true);
+
+    cloneExpensesItem.querySelector('.expenses-title').value = '';
+    cloneExpensesItem.querySelector('.expenses-amount').value = '';
+
     expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesPlus);
 
     expensesItems = document.querySelectorAll('.expenses-items');
@@ -89,6 +100,9 @@ let appData = {
   },
   addIncomeBlock: function () {
     let cloneIncomeItem = incomeItems[0].cloneNode(true);
+
+    cloneIncomeItem.querySelector('.income-title').value = '';
+    cloneIncomeItem.querySelector('.income-amount').value = '';
 
     incomeItems[0].parentNode.insertBefore(cloneIncomeItem, incomePlus);
 
@@ -186,6 +200,16 @@ salaryAmount.addEventListener('input', function () {
     calc.disabled = true;
     calc.style.opacity = '.4';
     calc.style.cursor = 'not-allowed';
+  }
+});
+salaryAmount.addEventListener('keydown', function (event) {
+  if (!checkNum(event.key)) {
+    event.preventDefault();
+  }
+});
+additionalExpensesItem.addEventListener('keydown', function (event) {
+  if (!checkLetter(event.key)) {
+    event.preventDefault();
   }
 });
 calc.addEventListener('click', appData.start);
