@@ -202,16 +202,24 @@ salaryAmount.addEventListener('input', function () {
     calc.style.cursor = 'not-allowed';
   }
 });
-salaryAmount.addEventListener('keydown', function (event) {
-  if (!checkNum(event.key)) {
-    event.preventDefault();
+
+document.body.addEventListener('keydown', (event) => {
+  let target = event.target;
+
+  if (target.placeholder == 'Наименование') {
+    if (!checkLetter(event.key)) {
+      event.preventDefault();
+    }
   }
-});
-additionalExpensesItem.addEventListener('keydown', function (event) {
-  if (!checkLetter(event.key)) {
-    event.preventDefault();
+
+  if (target.placeholder == 'Сумма') {
+    if (!checkNum(event.key)) {
+      event.preventDefault();
+    }
   }
+
 });
+
 calc.addEventListener('click', appData.start);
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
