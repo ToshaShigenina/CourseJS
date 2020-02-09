@@ -40,7 +40,7 @@ let isNumber = function (n) {
   enableElem = function () {
     for (let i = 0; i < arguments.length; i++) {
       arguments[i].disabled = false;
-      arguments[i].style.opacity = '';
+      arguments[i].style.opacity = '1';
       arguments[i].style.cursor = 'pointer';
     }
   };
@@ -62,6 +62,7 @@ let appData = {
     /*    do {
           money = prompt('Ваш месячный доход?');
         } while (!isNumber(money));*/
+
 
     this.budget = +salaryAmount.value;
     this.getExpenses();
@@ -91,11 +92,42 @@ let appData = {
     this.percentDeposit = 0;
     this.moneyDeposit = 0;
 
+    expensesItems.forEach(function (item, i) {
+      if (i > 0) {
+        item.remove();
+      }
+    });
+
+    expensesPlus.style.display = 'block';
+
+    incomeItems.forEach(function (item, i) {
+      if (i > 0) {
+        item.remove();
+      }
+    });
+
+    incomePlus.style.display = 'block';
+
     let input = document.querySelectorAll('input[type="text"]');
 
     input.forEach(function (item) {
       item.value = '';
+
+      if (item.classList.value.lastIndexOf('value') === -1) {
+        enableElem(item);
+        //        console.log(item);
+      }
     });
+
+    deposit.checked = false;
+
+    periodSelect.value = 1;
+    periodAmount.textContent = '1';
+
+    calc.style.display = 'block';
+    cancel.style.display = 'none';
+
+    disableElem(calc);
 
   },
   showResult: function () {
@@ -114,7 +146,7 @@ let appData = {
   },
   disableInput: function () {
     let input = document.querySelectorAll('input[type="text"]:not([class$="value"])');
-    console.log(input);
+    //console.log(input);
     input.forEach(function (item) {
       disableElem(item);
     });
@@ -201,7 +233,7 @@ let appData = {
     this.budgetDay = Math.floor(this.budgetMonth / 30);
   },
   getTargetMonth: function () {
-    return this.budgetMonth === 0 ? 'Срок' : Math.ceil(targetAmount.value / this.budgetMonth);
+    return this.budgetMonth === 0 ? '' : Math.ceil(targetAmount.value / this.budgetMonth);
   },
   getStatusIncome: function () {
     if (this.budgetDay >= 1200) {
