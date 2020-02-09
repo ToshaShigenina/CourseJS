@@ -1,6 +1,7 @@
 'use strict';
 
 let calc = document.getElementById('start'),
+  cancel = document.getElementById('cancel'),
   incomePlus = document.getElementsByTagName('button')[0],
   expensesPlus = document.getElementsByTagName('button')[1],
   deposit = document.querySelector('#deposit-check'),
@@ -57,7 +58,7 @@ let appData = {
   deposit: false,
   percentDeposit: 0,
   moneyDeposit: 0,
-  start: function (btn) {
+  start: function () {
     /*    do {
           money = prompt('Ваш месячный доход?');
         } while (!isNumber(money));*/
@@ -72,8 +73,30 @@ let appData = {
 
     this.showResult();
 
-    btn.style.display = 'none';
+    calc.style.display = 'none';
+    cancel.style.display = 'block';
     this.disableInput();
+  },
+  reset: function () {
+    this.budget = 0;
+    this.budgetDay = 0;
+    this.budgetMonth = 0;
+    this.income = {};
+    this.incomeMonth = 0;
+    this.addIncome = [];
+    this.expenses = {};
+    this.addExpenses = [];
+    this.expensesMonth = 0;
+    this.deposit = false;
+    this.percentDeposit = 0;
+    this.moneyDeposit = 0;
+
+    let input = document.querySelectorAll('input[type="text"]');
+
+    input.forEach(function (item) {
+      item.value = '';
+    });
+
   },
   showResult: function () {
     budgetMonthValue.value = this.budget;
@@ -90,8 +113,11 @@ let appData = {
 
   },
   disableInput: function () {
-
-    disableElem(salaryAmount, additionalExpensesItem, targetAmount, periodSelect, expensesItems, incomeItems, additionalIncomeItem);
+    let input = document.querySelectorAll('input[type="text"]:not([class$="value"])');
+    console.log(input);
+    input.forEach(function (item) {
+      disableElem(item);
+    });
   },
   addExpensesBlock: function () {
     let cloneExpensesItem = expensesItems[0].cloneNode(true);
@@ -234,9 +260,10 @@ document.body.addEventListener('keydown', (event) => {
 
 });
 
-calc.addEventListener('click', appData.start.bind(appData, calc));
+calc.addEventListener('click', appData.start.bind(appData));
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
 periodSelect.addEventListener('input', function (event) {
   periodAmount.textContent = periodSelect.value;
 });
+cancel.addEventListener('click', appData.reset.bind(appData));
