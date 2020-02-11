@@ -59,10 +59,6 @@ let appData = {
   percentDeposit: 0,
   moneyDeposit: 0,
   start: function () {
-    /*    do {
-          money = prompt('Ваш месячный доход?');
-        } while (!isNumber(money));*/
-
 
     this.budget = +salaryAmount.value;
     this.getExpenses();
@@ -78,6 +74,8 @@ let appData = {
     cancel.style.display = 'block';
     this.disableInput();
   },
+
+
   reset: function () {
     this.budget = 0;
     this.budgetDay = 0;
@@ -164,6 +162,10 @@ let appData = {
       expensesPlus.style.display = 'none';
     }
   },
+
+
+
+
   getExpenses: function () {
     expensesItems.forEach(function (item) {
       let itemExpenses = item.querySelector('.expenses-title').value;
