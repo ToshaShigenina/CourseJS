@@ -4,7 +4,7 @@ let calc = document.getElementById('start'),
   cancel = document.getElementById('cancel'),
   incomePlus = document.getElementsByTagName('button')[0],
   expensesPlus = document.getElementsByTagName('button')[1],
-  deposit = document.querySelector('#deposit-check'),
+  depositCheck = document.querySelector('#deposit-check'),
   additionalIncomeItem = document.querySelectorAll('.additional_income-item'),
   budgetMonthValue = document.getElementsByClassName('budget_month-value')[0],
   budgetDayValue = document.getElementsByClassName('budget_day-value')[0],
@@ -150,7 +150,7 @@ AppData.prototype.reset = function () {
     }
   });
 
-  deposit.removeAttribute('checked');
+  depositCheck.checked = false;
 
   periodSelect.value = 1;
   periodAmount.textContent = '1';
@@ -335,6 +335,16 @@ AppData.prototype.checkLetter = function () {
   });
 };*/
 
+AppData.prototype.eventsListeners = function () {
+  document.addEventListener('DOMContentLoaded', this.check);
+  calc.addEventListener('click', this.start.bind(this));
+  expensesPlus.addEventListener('click', this.addExpensesBlock);
+  incomePlus.addEventListener('click', this.addIncomeBlock);
+  periodSelect.addEventListener('input', function (event) {
+    periodAmount.textContent = periodSelect.value;
+  });
+  cancel.addEventListener('click', this.reset.bind(this));
+};
 
 
 
@@ -342,11 +352,4 @@ let appData = new AppData();
 
 console.log(appData);
 
-document.addEventListener('DOMContentLoaded', appData.check);
-calc.addEventListener('click', appData.start.bind(appData));
-expensesPlus.addEventListener('click', appData.addExpensesBlock);
-incomePlus.addEventListener('click', appData.addIncomeBlock);
-periodSelect.addEventListener('input', function (event) {
-  periodAmount.textContent = periodSelect.value;
-});
-cancel.addEventListener('click', appData.reset.bind(appData));
+appData.eventsListeners();
