@@ -59,23 +59,28 @@ class AppData {
     this.moneyDeposit = 0;
   }
 
-  static checkLetter() {
-    const inputLetter = document.querySelectorAll('input[placeholder="Наименование"]');
+  static checkInput() {
+    const inputLetter = document.querySelectorAll('input[placeholder="Наименование"]'),
+      inputNum = document.querySelectorAll('input[placeholder="Сумма"]');
 
     inputLetter.forEach((item) => {
       item.addEventListener('input', function () {
         this.value = this.value.replace(/[^А-Яа-я\s.,]/, '');
       });
     });
-  }
-
-  static checkNum() {
-    const inputNum = document.querySelectorAll('input[placeholder="Сумма"]');
 
     inputNum.forEach((item) => {
       item.addEventListener('input', function () {
         this.value = this.value.replace(/[^0-9]/, '');
       });
+    });
+  }
+
+  static disableInput() {
+    const input = document.querySelectorAll('input[type="text"]:not([class$="value"])');
+
+    input.forEach((item) => {
+      disableElem(item);
     });
   }
 
@@ -90,8 +95,7 @@ class AppData {
       }
     });
 
-    AppData.checkLetter();
-    AppData.checkNum();
+    AppData.checkInput();
   }
 
   start() {
@@ -100,7 +104,7 @@ class AppData {
       return;
     }
 
-    this.disableInput();
+    AppData.disableInput();
 
     calc.style.display = 'none';
     cancel.style.display = 'block';
@@ -177,13 +181,7 @@ class AppData {
     });
   }
 
-  disableInput() {
-    const input = document.querySelectorAll('input[type="text"]:not([class$="value"])');
 
-    input.forEach((item) => {
-      disableElem(item);
-    });
-  }
 
   addExpensesBlock() {
     const cloneExpensesItem = expensesItems[0].cloneNode(true);
@@ -197,8 +195,7 @@ class AppData {
       expensesPlus.style.display = 'none';
     }
 
-    AppData.checkLetter();
-    AppData.checkNum();
+    AppData.checkInput();
   }
 
   getExpenses() {
@@ -224,8 +221,7 @@ class AppData {
       incomePlus.style.display = 'none';
     }
 
-    AppData.checkLetter();
-    AppData.checkNum();
+    AppData.checkInput();
   }
 
   getIncome() {
@@ -322,10 +318,6 @@ class AppData {
     cancel.addEventListener('click', this.reset.bind(this));
   }
 }
-
-
-
-
 
 const appData = new AppData();
 
