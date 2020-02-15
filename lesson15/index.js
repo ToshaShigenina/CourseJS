@@ -181,18 +181,19 @@ class AppData {
     });
   }
 
+  addExpIncBlock() {
+    const classStr = this.classList[1].split('_')[0];
+    let items = document.querySelectorAll(`.${classStr}-items`);
+    const cloneItem = items[0].cloneNode(true);
 
+    cloneItem.querySelector('[class$="title"]').value = '';
+    cloneItem.querySelector('[class$="amount"]').value = '';
+    items[0].parentNode.insertBefore(cloneItem, this);
+    items = document.querySelectorAll(`.${classStr}-items`);
 
-  addExpensesBlock() {
-    const cloneExpensesItem = expensesItems[0].cloneNode(true);
-
-    cloneExpensesItem.querySelector('.expenses-title').value = '';
-    cloneExpensesItem.querySelector('.expenses-amount').value = '';
-    expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesPlus);
-    expensesItems = document.querySelectorAll('.expenses-items');
-
-    if (expensesItems.length === 3) {
-      expensesPlus.style.display = 'none';
+    if (items.length === 3) {
+      this.style.display = 'none';
+      return;
     }
 
     AppData.checkInput();
@@ -207,21 +208,6 @@ class AppData {
         this.expenses[itemExpenses] = +cashExpenses;
       }
     });
-  }
-
-  addIncomeBlock() {
-    const cloneIncomeItem = incomeItems[0].cloneNode(true);
-
-    cloneIncomeItem.querySelector('.income-title').value = '';
-    cloneIncomeItem.querySelector('.income-amount').value = '';
-    incomeItems[0].parentNode.insertBefore(cloneIncomeItem, incomePlus);
-    incomeItems = document.querySelectorAll('.income-items');
-
-    if (incomeItems.length === 3) {
-      incomePlus.style.display = 'none';
-    }
-
-    AppData.checkInput();
   }
 
   getIncome() {
@@ -310,8 +296,8 @@ class AppData {
   eventsListeners() {
     document.addEventListener('DOMContentLoaded', this.check);
     calc.addEventListener('click', this.start.bind(this));
-    expensesPlus.addEventListener('click', this.addExpensesBlock);
-    incomePlus.addEventListener('click', this.addIncomeBlock);
+    expensesPlus.addEventListener('click', this.addExpIncBlock);
+    incomePlus.addEventListener('click', this.addExpIncBlock);
     periodSelect.addEventListener('input', (event) => {
       periodAmount.textContent = periodSelect.value;
     });
