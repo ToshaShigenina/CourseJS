@@ -40,24 +40,6 @@ const isNumber = function (n) {
       arguments[i].style.opacity = '1';
       arguments[i].style.cursor = 'pointer';
     }
-  },
-  checkNum = function () {
-    const inputNum = document.querySelectorAll('input[placeholder="Сумма"]');
-
-    inputNum.forEach((item) => {
-      item.addEventListener('input', function () {
-        this.value = this.value.replace(/[^0-9]/, '');
-      });
-    });
-  },
-  checkLetter = function () {
-    const inputLetter = document.querySelectorAll('input[placeholder="Наименование"]');
-
-    inputLetter.forEach((item) => {
-      item.addEventListener('input', function () {
-        this.value = this.value.replace(/[^А-Яа-я\s.,]/, '');
-      });
-    });
   };
 
 
@@ -77,6 +59,26 @@ class AppData {
     this.moneyDeposit = 0;
   }
 
+  static checkLetter() {
+    const inputLetter = document.querySelectorAll('input[placeholder="Наименование"]');
+
+    inputLetter.forEach((item) => {
+      item.addEventListener('input', function () {
+        this.value = this.value.replace(/[^А-Яа-я\s.,]/, '');
+      });
+    });
+  }
+
+  static checkNum() {
+    const inputNum = document.querySelectorAll('input[placeholder="Сумма"]');
+
+    inputNum.forEach((item) => {
+      item.addEventListener('input', function () {
+        this.value = this.value.replace(/[^0-9]/, '');
+      });
+    });
+  }
+
   check() {
     disableElem(calc);
 
@@ -88,8 +90,8 @@ class AppData {
       }
     });
 
-    checkLetter();
-    checkNum();
+    AppData.checkLetter();
+    AppData.checkNum();
   }
 
   start() {
@@ -195,8 +197,8 @@ class AppData {
       expensesPlus.style.display = 'none';
     }
 
-    checkLetter();
-    checkNum();
+    AppData.checkLetter();
+    AppData.checkNum();
   }
 
   getExpenses() {
@@ -222,8 +224,8 @@ class AppData {
       incomePlus.style.display = 'none';
     }
 
-    checkLetter();
-    checkNum();
+    AppData.checkLetter();
+    AppData.checkNum();
   }
 
   getIncome() {
@@ -320,28 +322,6 @@ class AppData {
     cancel.addEventListener('click', this.reset.bind(this));
   }
 }
-
-
-
-/*AppData.prototype.checkNum = function () {
-  let inputNum = document.querySelectorAll('input[placeholder="Сумма"]');
-
-  inputNum.forEach(function (item) {
-    item.addEventListener('input', function () {
-      this.value = this.value.replace(/[^0-9]/, '');
-    });
-  });
-};
-
-AppData.prototype.checkLetter = function () {
-  let inputLetter = document.querySelectorAll('input[placeholder="Наименование"]');
-
-  inputLetter.forEach(function (item) {
-    item.addEventListener('input', function () {
-      this.value = this.value.replace(/[^А-Яа-я\s.,]/, '');
-    });
-  });
-};*/
 
 
 
