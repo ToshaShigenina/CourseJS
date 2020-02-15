@@ -199,26 +199,22 @@ class AppData {
     AppData.checkInput();
   }
 
-  getExpenses() {
-    expensesItems.forEach((item) => {
-      const itemExpenses = item.querySelector('.expenses-title').value,
-        cashExpenses = item.querySelector('.expenses-amount').value;
+  getExpInc() {
+    expensesItems = document.querySelectorAll('.expenses-items');
+    incomeItems = document.querySelectorAll('.income-items');
 
-      if (itemExpenses !== '' && cashExpenses !== '') {
-        this.expenses[itemExpenses] = +cashExpenses;
+    const calc = (item) => {
+      const classStr = item.className.split('-')[0],
+        title = item.querySelector('[class$="title"]').value,
+        amount = item.querySelector('[class$="amount"]').value;
+
+      if (title !== '' && amount !== '') {
+        this[classStr][title] = +amount;
       }
-    });
-  }
+    };
 
-  getIncome() {
-    incomeItems.forEach((item) => {
-      const itemIncome = item.querySelector('.income-title').value,
-        cashIncome = item.querySelector('.income-amount').value;
-
-      if (itemIncome !== '' && cashIncome !== '') {
-        this.income[itemIncome] = +cashIncome;
-      }
-    });
+    expensesItems.forEach(calc);
+    incomeItems.forEach(calc);
 
     for (let key in this.income) {
       this.incomeMonth += this.income[key];
