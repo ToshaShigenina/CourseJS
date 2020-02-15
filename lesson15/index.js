@@ -222,7 +222,7 @@ class AppData {
     const addExpenses = additionalExpensesItem.value.split(',');
 
     const calc = (item) => {
-      if (item.value) {
+      if (item.value !== undefined) {
         if (item.value.trim()) {
           this.addIncome.push(item.value.trim());
         }
