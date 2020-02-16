@@ -17,7 +17,10 @@ const calc = document.getElementById('start'),
   periodAmount = document.querySelector('.period-amount'),
   targetAmount = document.querySelector('.target-amount'),
   additionalExpensesItem = document.querySelector('.additional_expenses-item'),
-  salaryAmount = document.querySelector('.salary-amount');
+  salaryAmount = document.querySelector('.salary-amount'),
+  depositBank = document.querySelector('.deposit-bank'),
+  depositAmount = document.querySelector('.deposit-amount'),
+  depositPercent = document.querySelector('.deposit-percent');
 
 let incomeItems = document.querySelectorAll('.income-items'),
   expensesItems = document.querySelectorAll('.expenses-items');
@@ -64,14 +67,14 @@ class AppData {
       inputNum = document.querySelectorAll('input[placeholder="Сумма"]');
 
     inputLetter.forEach((item) => {
-      item.addEventListener('input', function () {
-        this.value = this.value.replace(/[^А-Яа-я\s.,]/, '');
+      item.addEventListener('input', () => {
+        item.value = item.value.replace(/[^А-Яа-я\s.,]/, '');
       });
     });
 
     inputNum.forEach((item) => {
-      item.addEventListener('input', function () {
-        this.value = this.value.replace(/[^0-9]/, '');
+      item.addEventListener('input', () => {
+        item.value = item.value.replace(/[^0-9]/, '');
       });
     });
   }
@@ -285,6 +288,16 @@ class AppData {
     }
   }
 
+  depositHandler() {
+    if (depositCheck.checked) {
+      depositBank.style.display = 'inline-block';
+      depositAmount.style.display = 'inline-block';
+    } else {
+      depositBank.style.display = 'none';
+      depositAmount.style.display = 'none';
+    }
+  }
+
   eventsListeners() {
     document.addEventListener('DOMContentLoaded', this.check);
     calc.addEventListener('click', this.start.bind(this));
@@ -294,6 +307,7 @@ class AppData {
       periodAmount.textContent = periodSelect.value;
     });
     cancel.addEventListener('click', this.reset.bind(this));
+    depositCheck.addEventListener('change', this.depositHandler.bind(this));
   }
 }
 
