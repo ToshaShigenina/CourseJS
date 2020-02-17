@@ -170,7 +170,7 @@ class AppData {
   }
 
   showResult() {
-    budgetMonthValue.value = this.budget;
+    budgetMonthValue.value = this.budgetMonth;
     budgetDayValue.value = this.budgetDay;
     expensesMonthValue.value = this.expensesMonth;
     additionalExpensesValue.value = this.addExpenses.join(', ');
@@ -235,7 +235,7 @@ class AppData {
           this.addExpenses.push(item.trim());
         }
       }
-    }
+    };
 
     addExpenses.forEach(calc);
     additionalIncomeItem.forEach(calc);
