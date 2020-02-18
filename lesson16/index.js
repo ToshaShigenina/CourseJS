@@ -193,6 +193,9 @@ class AppData {
     items[0].parentNode.insertBefore(cloneItem, this);
     items = document.querySelectorAll(`.${classStr}-items`);
 
+    expensesItems = document.querySelectorAll('.expenses-items');
+    incomeItems = document.querySelectorAll('.income-items');
+
     if (items.length === 3) {
       this.style.display = 'none';
     }
@@ -201,8 +204,8 @@ class AppData {
   }
 
   getExpInc() {
-    expensesItems = document.querySelectorAll('.expenses-items');
-    incomeItems = document.querySelectorAll('.income-items');
+    /*    expensesItems = document.querySelectorAll('.expenses-items');
+        incomeItems = document.querySelectorAll('.income-items');*/
 
     const calc = (item) => {
       const classStr = item.className.split('-')[0],
