@@ -79,10 +79,10 @@ class AppData {
     });
   }
 
-  static disableInput() {
+  static disableElements() {
     const input = document.querySelectorAll('input[type="text"]:not([class$="value"])');
 
-    disableElem(...input, depositLabel, depositBank);
+    disableElem(...input, depositLabel, depositBank, periodSelect);
   }
 
   check() {
@@ -105,7 +105,7 @@ class AppData {
       return;
     }
 
-    AppData.disableInput();
+    AppData.disableElements();
 
     calc.style.display = 'none';
     cancel.style.display = 'block';
@@ -158,7 +158,7 @@ class AppData {
       }
     });
 
-    enableElem(depositLabel, depositBank, depositAmount, depositPercent);
+    enableElem(depositLabel, depositBank, depositAmount, depositPercent, periodSelect);
     depositCheck.checked = false;
     periodSelect.value = 1;
     periodAmount.textContent = '1';
