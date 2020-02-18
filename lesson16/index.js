@@ -20,7 +20,8 @@ const calc = document.getElementById('start'),
   salaryAmount = document.querySelector('.salary-amount'),
   depositBank = document.querySelector('.deposit-bank'),
   depositAmount = document.querySelector('.deposit-amount'),
-  depositPercent = document.querySelector('.deposit-percent');
+  depositPercent = document.querySelector('.deposit-percent'),
+  depositLabel = document.querySelector('.deposit-label');
 
 let incomeItems = document.querySelectorAll('.income-items'),
   expensesItems = document.querySelectorAll('.expenses-items');
@@ -40,8 +41,7 @@ const isNumber = function (n) {
   enableElem = function () {
     for (let i = 0; i < arguments.length; i++) {
       arguments[i].disabled = false;
-      arguments[i].style.opacity = '1';
-      arguments[i].style.cursor = 'pointer';
+      arguments[i].removeAttribute('style');
     }
   };
 
@@ -82,9 +82,7 @@ class AppData {
   static disableInput() {
     const input = document.querySelectorAll('input[type="text"]:not([class$="value"])');
 
-    input.forEach((item) => {
-      disableElem(item);
-    });
+    disableElem(...input, depositLabel, depositBank);
   }
 
   check() {
@@ -160,6 +158,7 @@ class AppData {
       }
     });
 
+    enableElem(depositLabel, depositBank, depositAmount, depositPercent);
     depositCheck.checked = false;
     periodSelect.value = 1;
     periodAmount.textContent = '1';
