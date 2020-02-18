@@ -112,22 +112,29 @@ class AppData {
   }
 
   checkCookie() {
-    const deleteCookie = (name) => {
-      document.cookie = `${name}=; max-age=-1`;
+    const deleteCookie = (data) => {
+      data.forEach((item) => {
+        document.cookie = `${item.split('=')[0].trim()}=; max-age=-1`;
+      });
     };
 
-    let cookie = document.cookie.split(';');
+    let cookies = document.cookie.split(';'),
+      flag = false;
 
-    if (cookie.length - 1 !== localStorage.length) {
-      cookie.forEach((item) => {
-        deleteCookie(item.split('=')[0]);
-      });
+    if (cookies.length - 1 !== localStorage.length) {
+      deleteCookie(cookies);
     } else {
-      cookie.forEach((item) => {
-        if (item.split('=')[1] && (item.split('=')[1] !== localStorage.getItem(item.split('=')[0]))) {
-          deleteCookie(item.split('=')[0]);
+      cookies.forEach((item) => {
+        let key = item.split('=')[0].trim(),
+          val = item.split('=')[1].trim() || '';
+        if (key !== 'isLoad' && !(localStorage.getItem(key) === val)) {
+          flag = true;
         }
       });
+
+      if (flag) {
+        deleteCookie(cookies);
+      }
     }
   }
 
@@ -135,6 +142,7 @@ class AppData {
     if (localStorage.length !== 0) {
       this.printData();
       AppData.disableElements();
+      this.checkCookie();
 
       calc.style.display = 'none';
       cancel.style.display = 'block';
@@ -221,6 +229,7 @@ class AppData {
     cancel.style.display = 'none';
 
     localStorage.clear();
+    this.checkCookie();
     disableElem(calc);
   }
 
