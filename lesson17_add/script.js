@@ -5,9 +5,8 @@ const startBtn = document.getElementById('start'),
 
 let deg = 0,
   size = 1,
-  percent = 0;
-
-let id = 0;
+  percent = 0,
+  id = 0;
 
 const square = document.createElement('div');
 square.classList.add('square');
@@ -17,18 +16,12 @@ document.body.append(square);
 const start = () => {
   if (id === 0) {
     id = requestAnimationFrame(animateSquare);
-    console.log('start: ', id);
   }
 };
 
 const stop = () => {
   if (id !== 0) {
     cancelAnimationFrame(id);
-    console.log('stop: ', id);
-    square.removeAttribute('style');
-    deg = 0;
-    size = 1;
-    percent = 0;
     id = 0;
   }
 };
@@ -54,9 +47,17 @@ const animateSquare = () => {
 
 
 startBtn.addEventListener('click', () => {
-  start();
+  if (id === 0) {
+    start();
+  } else {
+    stop();
+  }
 });
 
 resetBtn.addEventListener('click', () => {
   stop();
+  square.removeAttribute('style');
+  deg = 0;
+  size = 1;
+  percent = 0;
 });
